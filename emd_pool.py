@@ -57,10 +57,10 @@ if __name__ == '__main__':
     coordinates = np.unravel_index(np.arange(784), (28,28))
 
     x_tr_emd = np.asarray(imap_unordered_bar(functools.partial(calc_emd, heldout_=heldout,
-                                 coordinates_=coordinates), x_tr[:10], n_processes=4))
+                                 coordinates_=coordinates), x_tr, n_processes=20))
 
     x_te_emd = np.asarray(imap_unordered_bar(functools.partial(calc_emd, heldout_=heldout,
-                                 coordinates_=coordinates), x_te[:10], n_processes=4))
+                                 coordinates_=coordinates), x_te, n_processes=20))
 
     np.save(DATADIR + '/x_tr_emd.npy', x_tr_emd)
     np.save(DATADIR + '/y_tr.npy', y_tr)
