@@ -28,7 +28,7 @@ def imap_unordered_bar(func, args, n_processes = 2):
     p = Pool(n_processes)
     res_list = []
     with tqdm(total = len(args)) as pbar:
-        for i, res in tqdm(enumerate(p.imap_unordered(func, args))):
+        for i, res in tqdm(enumerate(p.imap(func, args))):
             pbar.update()
             res_list.append(res)
     pbar.close()
@@ -63,6 +63,6 @@ if __name__ == '__main__':
                                  coordinates_=coordinates), x_te[:10], n_processes=4))
 
     np.save(DATADIR + '/x_tr_emd.npy', x_tr_emd)
-    np.save(DATADIR + '/y_tr.npy', x_tr_emd)
+    np.save(DATADIR + '/y_tr.npy', y_tr)
     np.save(DATADIR + '/x_te_emd.npy', x_te_emd)
-    np.save(DATADIR + '/y_te.npy', x_tr_emd)
+    np.save(DATADIR + '/y_te.npy', y_te)
